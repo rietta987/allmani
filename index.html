@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Алиса — мастер маникюра | Наращивание ногтей</title>
+<meta name="description" content="Наращивание ногтей, дизайн, маникюр. Начинающий мастер Алиса. Низкие цены, уютная атмосфера. Запись в Telegram и MAX.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Caveat:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --black: #0d0d0d;
+    --white: #fafafa;
+    --pink: #ec4899;
+    --pink-soft: #f9a8d4;
+    --pink-dark: #be185d;
+    --gray: #6b6b6b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  .lace-divider {
+    height: 30px;
+    background-image:
+      radial-gradient(circle at 15px 15px, var(--pink) 3px, transparent 4px),
+      radial-gradient(circle at 45px 15px, var(--pink) 3px, transparent 4px);
+    background-size: 60px 30px;
+    background-repeat: repeat-x;
+    opacity: 0.4;
+    margin: 0 auto;
+    max-width: 1100px;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 250, 250, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .logo span { color: var(--pink); }
+
+  nav a {
+    color: var(--black);
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--pink); }
+
+  @media (max-width: 800px) { nav { display: none; } }
+
+  .hero {
+    position: relative;
+    padding: 80px 0 100px;
+    background: var(--white);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '🐾';
+    position: absolute;
+    font-size: 200px;
+    opacity: 0.04;
+    top: 40px;
+    right: -30px;
+    transform: rotate(-20deg);
+  }
+
+  .hero::after {
+    content: '🐾';
+    position: absolute;
+    font-size: 120px;
+    opacity: 0.03;
+    bottom: 40px;
+    left: -20px;
+    transform: rotate(30deg);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--pink);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--pink); }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--gray);
+    margin-bottom: 32px;
+    max-width: 500px;
+  }
+
+  .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .btn-primary { background: var(--black); color: white; }
+  .btn-primary:hover {
+    background: var(--pink);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--black);
+    border-color: var(--black);
+  }
+  .btn-outline:hover { background: var(--black); color: white; }
+
+  .hero-photo {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.3);
+    background: #1a1a1a;
+  }
+
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  section { padding: 80px 0; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: -0.5px;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--pink);
+    margin: 16px auto 0;
+    border-radius: 3px;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--gray);
+    font-size: 16px;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about { background: #fff; }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  @media (max-width: 800px) {
+    .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  .about-photo {
+    aspect-ratio: 1;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #2a2a2a, #0d0d0d);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-photo::after {
+    content: '🐈‍⬛';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 60px;
+    opacity: 0.3;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-text p { font-size: 16px; color: #333; margin-bottom: 16px; }
+
+  .about-text .signature {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: var(--pink);
+    margin-top: 20px;
+  }
+
+  .gallery-section { background: #fff; }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .gallery-item {
+    display: block;
+    aspect-ratio: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    background: #f0f0f0;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gallery-item::after {
+    content: '🐾';
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-size: 22px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(236, 72, 153, 0.2);
+  }
+
+  .gallery-item:hover::after { opacity: 0.8; }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover img { transform: scale(1.05); }
+
+  @media (max-width: 600px) {
+    .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  }
+
+  .services { background: #0d0d0d; color: white; position: relative; }
+  .services .section-title { color: white; }
+  .services .section-sub { color: rgba(255,255,255,0.6); }
+
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .price-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-card:hover {
+    border-color: var(--pink);
+    transform: translateY(-4px);
+    background: rgba(236, 72, 153, 0.06);
+  }
+
+  .price-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .price-card h3::before {
+    content: '♥';
+    color: var(--pink);
+    font-size: 16px;
+  }
+
+  .price-list { list-style: none; }
+
+  .price-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+    font-size: 15px;
+  }
+
+  .price-list li:last-child { border-bottom: none; }
+
+  .price-list .price {
+    color: var(--pink-soft);
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 16px;
+  }
+
+  .price-note {
+    text-align: center;
+    margin-top: 40px;
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+  }
+
+  .step { text-align: center; padding: 20px; }
+
+  .step-num {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--pink);
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+
+  .step h4 { font-size: 17px; margin-bottom: 8px; font-weight: 600; }
+  .step p { font-size: 14px; color: var(--gray); }
+
+  .important { background: #fff5f9; }
+
+  .important-list { max-width: 800px; margin: 0 auto; list-style: none; }
+
+  .important-list li {
+    padding: 18px 20px 18px 56px;
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--pink);
+    font-size: 15px;
+  }
+
+  .important-list li::before {
+    content: '♥';
+    position: absolute;
+    left: 22px;
+    top: 18px;
+    color: var(--pink);
+    font-size: 18px;
+  }
+
+  .gifts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .gift-card {
+    background: var(--white);
+    border: 2px dashed var(--pink);
+    border-radius: 20px;
+    padding: 32px 28px;
+    text-align: center;
+  }
+
+  .gift-card .emoji { font-size: 40px; margin-bottom: 12px; }
+  .gift-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .gift-card p { color: var(--gray); font-size: 15px; }
+  .gift-card .highlight { color: var(--pink-dark); font-weight: 600; }
+
+  .contacts {
+    background: #0d0d0d;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contacts::before {
+    content: '🐾';
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.03;
+    bottom: -60px;
+    right: -60px;
+    transform: rotate(-25deg);
+  }
+
+  .contacts .section-title { color: white; }
+  .contacts .section-sub { color: rgba(255,255,255,0.6); }
+
+  .contact-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-tg, .btn-max {
+    padding: 18px 36px;
+    font-size: 16px;
+    border-radius: 100px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+  }
+
+  .btn-tg { background: #2AABEE; color: white; }
+  .btn-tg:hover {
+    background: #1c8cc7;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(42, 171, 238, 0.3);
+  }
+
+  .btn-max { background: var(--pink); color: white; }
+  .btn-max:hover {
+    background: var(--pink-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+  }
+
+  .contact-info {
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    position: relative;
+    z-index: 1;
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .contact-info strong { color: white; }
+
+  footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  footer .heart { color: var(--pink); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Алиса<span>.</span></div>
+    <nav>
+      <a href="#about">Обо мне</a>
+      <a href="#gallery">Работы</a>
+      <a href="#services">Услуги</a>
+      <a href="#steps">Запись</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-badge">🐾 Ищу моделей</span>
+        <h1>Наращивание ногтей<br>с <em>душой</em> и котом</h1>
+        <p class="hero-sub">
+          Привет! Я Алиса — начинающий мастер маникюра. Делаю наращивание, дизайн и уход.
+          Низкие цены, уютная атмосфера, чай с печеньками и любимая музыка.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://t.me/WellWhy2003" target="_blank" class="btn btn-primary">✈ Написать в Telegram</a>
+          <a href="#services" class="btn btn-outline">Смотреть прайс</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="img/work2.jpg" alt="Работа мастера — наращивание ногтей" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lace-divider"></div>
+
+<section class="about" id="about">
+  <div class="container">
+    <h2 class="section-title">Обо мне</h2>
+    <p class="section-sub">Немного о том, кто будет делать ваши ногти</p>
+
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="img/alisa.jpg" alt="Алиса — мастер маникюра" />
+      </div>
+      <div class="about-text">
+        <p>Мне 18 лет, я студентка-психолог. Маникюр — моя отдушина и дело, которое я хочу развивать.</p>
+        <p>Я самоучка, но с каждым разом совершенствую навыки. Планирую пойти на курсы, когда появится возможность. Пока учусь на моделях — и поэтому цены такие низкие.</p>
+        <p>Работаю на дому: частный дом, Кировский район («молочка»), улица Раздольная. Точный адрес напишу при отклике.</p>
+        <p>У меня дома живёт кот 🐈‍⬛ — если у вас аллергия или страх, предупредите заранее, что-нибудь придумаем.</p>
+        <p class="signature">Буду рада видеть вас!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="container">
+    <h2 class="section-title">Мои работы</h2>
+    <p class="section-sub">От старых к новым — с каждым разом всё лучше</p>
+
+    <div class="gallery">
+      <a href="img/work4.jpg" target="_blank" class="gallery-item">
+        <img src="img/work4.jpg" alt="Работа — самая старая" loading="lazy">
+      </a>
+      <a href="img/work3.jpg" target="_blank" class="gallery-item">
+        <img src="img/work3.jpg" alt="Работа" loading="lazy">
+      </a>
+      <a href="img/work2.jpg" target="_blank" class="gallery-item">
+        <img src="img/work2.jpg" alt="Работа — самая новая" loading="lazy">
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="lace-divider"></div>
+
+<section class="services" id="services">
+  <div class="container">
+    <h2 class="section-title">Услуги и цены</h2>
+    <p class="section-sub">Честные цены для моделей — потому что я только набираюсь опыта</p>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Наращивание</h3>
+        <ul class="price-list">
+          <li><span>Длина 1–2</span><span class="price">450 ₽</span></li>
+          <li><span>Длина 3–4</span><span class="price">500 ₽</span></li>
+          <li><span>Длина 5–6</span><span class="price">600 ₽</span></li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <h3>Дизайн</h3>
+        <ul class="price-list">
+          <li><span>Простой</span><span class="price">от 50 ₽</span></li>
+          <li><span>Сложный</span><span class="price">до 150 ₽</span></li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <h3>Базовый уход</h3>
+        <ul class="price-list">
+          <li><span>Комбинированный, без покрытия</span><span class="price">200 ₽</span></li>
+          <li><span>Комбинированный + гель-лак</span><span class="price">350 ₽</span></li>
+          <li><span>Снятие</span><span class="price">100 ₽</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="price-note">
+      Работаю с любой формой, включая «когти». Наращиваю на нижние формы.
+    </p>
+  </div>
+</section>
+
+<div class="lace-divider"></div>
+
+<section id="steps">
+  <div class="container">
+    <h2 class="section-title">Как записаться</h2>
+    <p class="section-sub">Четыре простых шага — и ваши ногти в надёжных руках</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Напишите мне</h4>
+        <p>В Telegram или MAX — обсудим детали</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Пришлите референс</h4>
+        <p>Фото ногтей, которые хотите. Скажу, смогу ли повторить</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Подберём материалы</h4>
+        <p>Если чего-то не хватает — скину, что есть, выберем вместе</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Договоримся о дате</h4>
+        <p>Выделите 5–6 часов — работа с длиной и дизайном не быстрая</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="important">
+  <div class="container">
+    <h2 class="section-title">Важно знать</h2>
+    <p class="section-sub">Честно — чтобы не было сюрпризов</p>
+
+    <ul class="important-list">
+      <li>Беру девушек <strong>от 12 лет</strong>. До 14 — только с разрешения родителей.</li>
+      <li><strong>До 16 лет наращивание не рекомендую</strong> — ногтевая пластина ещё не сформирована до конца, есть риск повредить.</li>
+      <li>Я начинающий мастер — <strong>не обещаю идеального результата</strong>, но обещаю стараться и учиться.</li>
+      <li>Время работы сложно предсказать заранее. <strong>С большой длиной могу работать 5–6 часов</strong> — наберитесь терпения и возьмите запас времени.</li>
+      <li>Инструменты обрабатываю по всем правилам: <strong>аламинол → промывка → крафт-пакет → сухожар</strong>.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">Подарки</h2>
+    <p class="section-sub">Спасибо, что помогаете мне расти</p>
+
+    <div class="gifts">
+      <div class="gift-card">
+        <div class="emoji">💌</div>
+        <h4>За отзыв</h4>
+        <p>Скидка <span class="highlight">100 ₽</span> на следующий маникюр</p>
+      </div>
+      <div class="gift-card">
+        <div class="emoji">👯‍♀️</div>
+        <h4>За подругу</h4>
+        <p>Скидка <span class="highlight">100 ₽</span> вам или ей на следующий визит</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lace-divider"></div>
+
+<section class="contacts" id="contacts">
+  <div class="container">
+    <h2 class="section-title">Записаться</h2>
+    <p class="section-sub">Пишите — отвечу быстро и с радостью</p>
+
+    <div class="contact-buttons">
+      <a href="https://t.me/WellWhy2003" target="_blank" class="btn-tg">✈ Telegram</a>
+      <a href="https://max.ru/u/+79869936136" target="_blank" class="btn-max">💬 MAX</a>
+    </div>
+
+    <div class="contact-info">
+      <p>Telegram: <strong>@WellWhy2003</strong> · MAX: <strong>+7 986 993 61 36</strong></p>
+      <p>Кировский район · «Молочка» · ул. Раздольная</p>
+      <p>Точный адрес напишу при отклике</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Алиса — мастер маникюра · Сделано с <span class="heart">♥</span> и 🐾</p>
+</footer>
+
+</body>
+</html>
