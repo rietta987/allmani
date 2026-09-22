@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Алиса — мастер маникюра | Наращивание ногтей</title>
-<meta name="description" content="Наращивание ногтей, дизайн, маникюр. Начинающий мастер Алиса. Низкие цены, уютная атмосфера. Запись в Telegram и MAX.">
+<meta name="description" content="Наращивание ногтей, дизайн, маникюр. Начинающий мастер Алиса. Низкие цены, уютная атмосфера. Запись через форму или Telegram.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -570,6 +570,7 @@
     .booking-form { padding: 28px 22px; }
   }
 
+  /* ===== КОНТАКТЫ ===== */
   .contacts {
     background: #0d0d0d;
     color: white;
@@ -600,7 +601,7 @@
     z-index: 1;
   }
 
-  .btn-tg, .btn-max {
+  .btn-tg {
     padding: 18px 36px;
     font-size: 16px;
     border-radius: 100px;
@@ -610,17 +611,31 @@
     align-items: center;
     gap: 10px;
     transition: all 0.2s;
+    background: #2AABEE;
+    color: white;
   }
 
-  .btn-tg { background: #2AABEE; color: white; }
   .btn-tg:hover {
     background: #1c8cc7;
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(42, 171, 238, 0.3);
   }
 
-  .btn-max { background: var(--pink); color: white; }
-  .btn-max:hover {
+  .btn-channel {
+    padding: 18px 36px;
+    font-size: 16px;
+    border-radius: 100px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+    background: var(--pink);
+    color: white;
+  }
+
+  .btn-channel:hover {
     background: var(--pink-dark);
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
@@ -636,6 +651,14 @@
   }
 
   .contact-info strong { color: white; }
+
+  .contact-info a {
+    color: var(--pink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-info a:hover { color: white; }
 
   footer {
     background: var(--black);
@@ -680,7 +703,7 @@
         </div>
       </div>
       <div class="hero-photo">
-        <img src="img/work2.jpg" alt="Работа мастера — наращивание ногтей" />
+        <img src="img/work1.jpg" alt="Работа мастера — наращивание ногтей" />
       </div>
     </div>
   </div>
@@ -892,15 +915,16 @@
 <section class="contacts" id="contacts">
   <div class="container">
     <h2 class="section-title">Или напиши напрямую</h2>
-    <p class="section-sub">Если удобнее в мессенджере — пиши туда</p>
+    <p class="section-sub">Если удобнее в Telegram — пиши туда</p>
 
     <div class="contact-buttons">
-      <a href="https://t.me/WellWhy2003" target="_blank" class="btn-tg">✈ Telegram</a>
-      <a href="https://max.ru/u/+79869936136" target="_blank" class="btn-max">💬 MAX</a>
+      <a href="https://t.me/WellWhy2003" target="_blank" class="btn-tg">✈ Написать Алисе</a>
+      <a href="https://t.me/hirame_nails" target="_blank" class="btn-channel">📸 Канал с работами</a>
     </div>
 
     <div class="contact-info">
-      <p>Telegram: <strong>@WellWhy2003</strong> · MAX: <strong>+7 986 993 61 36</strong></p>
+      <p>Telegram: <strong><a href="https://t.me/WellWhy2003" target="_blank">@WellWhy2003</a></strong></p>
+      <p>Канал: <strong><a href="https://t.me/hirame_nails" target="_blank">@hirame_nails</a></strong></p>
       <p>Кировский район · «Молочка» · ул. Раздольная</p>
       <p>Точный адрес напишу при отклике</p>
     </div>
