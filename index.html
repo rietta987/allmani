@@ -475,6 +475,101 @@
   .gift-card p { color: var(--gray); font-size: 15px; }
   .gift-card .highlight { color: var(--pink-dark); font-weight: 600; }
 
+  /* ===== ФОРМА ЗАЯВКИ ===== */
+  .booking { background: #fff5f9; }
+
+  .booking-form {
+    max-width: 560px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px 36px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px -20px rgba(236, 72, 153, 0.2);
+    border: 2px solid transparent;
+    background-image: linear-gradient(white, white),
+                      linear-gradient(135deg, var(--pink), var(--black));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .form-group { margin-bottom: 20px; }
+
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+
+  .form-group .req { color: var(--pink); }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--black);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.1);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 80px; }
+
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ec4899' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 20px;
+    padding-right: 44px;
+    cursor: pointer;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 100px;
+    background: var(--black);
+    color: white;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .btn-submit:hover {
+    background: var(--pink);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+  }
+
+  .form-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .booking-form { padding: 28px 22px; }
+  }
+
   .contacts {
     background: #0d0d0d;
     color: white;
@@ -563,7 +658,7 @@
       <a href="#about">Обо мне</a>
       <a href="#gallery">Работы</a>
       <a href="#services">Услуги</a>
-      <a href="#steps">Запись</a>
+      <a href="#booking">Заявка</a>
       <a href="#contacts">Контакты</a>
     </nav>
   </div>
@@ -580,12 +675,12 @@
           Низкие цены, уютная атмосфера, чай с печеньками и любимая музыка.
         </p>
         <div class="hero-buttons">
-          <a href="https://t.me/WellWhy2003" target="_blank" class="btn btn-primary">✈ Написать в Telegram</a>
+          <a href="#booking" class="btn btn-primary">🐾 Оставить заявку</a>
           <a href="#services" class="btn btn-outline">Смотреть прайс</a>
         </div>
       </div>
       <div class="hero-photo">
-        <img src="img/work1.jpg" alt="Работа мастера — наращивание ногтей" />
+        <img src="img/work2.jpg" alt="Работа мастера — наращивание ногтей" />
       </div>
     </div>
   </div>
@@ -683,8 +778,8 @@
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
-        <h4>Напишите мне</h4>
-        <p>В Telegram или MAX — обсудим детали</p>
+        <h4>Оставьте заявку</h4>
+        <p>Через форму на сайте — я свяжусь сама</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
@@ -740,12 +835,64 @@
   </div>
 </section>
 
+<section class="booking" id="booking">
+  <div class="container">
+    <h2 class="section-title">Оставить заявку</h2>
+    <p class="section-sub">Заполни форму — свяжусь с тобой в течение дня 🐾</p>
+
+    <form action="https://api.web3forms.com/submit" method="POST" class="booking-form">
+      <input type="hidden" name="access_key" value="ВСТАВЬ_СЮДА_СВОЙ_КЛЮЧ">
+      <input type="hidden" name="subject" value="🐾 Новая заявка с сайта Алисы">
+      <input type="hidden" name="from_name" value="Сайт Алисы — заявки">
+      <input type="checkbox" name="botcheck" style="display:none">
+
+      <div class="form-group">
+        <label for="name">Как тебя зовут? <span class="req">*</span></label>
+        <input type="text" id="name" name="Имя" required placeholder="Например, Маша">
+      </div>
+
+      <div class="form-group">
+        <label for="contact">Telegram или телефон <span class="req">*</span></label>
+        <input type="text" id="contact" name="Контакт" required placeholder="@ник или +7...">
+      </div>
+
+      <div class="form-group">
+        <label for="service">Что хочешь? <span class="req">*</span></label>
+        <select id="service" name="Услуга" required>
+          <option value="">— выбери услугу —</option>
+          <option>Наращивание 1–2</option>
+          <option>Наращивание 3–4</option>
+          <option>Наращивание 5–6</option>
+          <option>Маникюр без покрытия</option>
+          <option>Маникюр + гель-лак</option>
+          <option>Только снятие</option>
+          <option>Пока не знаю, нужен совет</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="wish">Пожелания по дизайну</label>
+        <textarea id="wish" name="Пожелания" rows="3" placeholder="Кошачий глаз, розовый, немного блёсток..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="when">Когда удобно?</label>
+        <input type="text" id="when" name="Когда удобно" placeholder="Например: суббота днём">
+      </div>
+
+      <button type="submit" class="btn-submit">🐾 Отправить заявку</button>
+
+      <p class="form-note">Отправляя форму, ты согласна на обработку данных для записи на маникюр</p>
+    </form>
+  </div>
+</section>
+
 <div class="lace-divider"></div>
 
 <section class="contacts" id="contacts">
   <div class="container">
-    <h2 class="section-title">Записаться</h2>
-    <p class="section-sub">Пишите — отвечу быстро и с радостью</p>
+    <h2 class="section-title">Или напиши напрямую</h2>
+    <p class="section-sub">Если удобнее в мессенджере — пиши туда</p>
 
     <div class="contact-buttons">
       <a href="https://t.me/WellWhy2003" target="_blank" class="btn-tg">✈ Telegram</a>
