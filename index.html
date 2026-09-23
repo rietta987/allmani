@@ -83,7 +83,78 @@
 
   nav a:hover { color: var(--pink); }
 
-  @media (max-width: 800px) { nav { display: none; } }
+  /* ===== БУРГЕР-МЕНЮ ===== */
+  .burger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 110;
+    padding: 10px;
+  }
+
+  .burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--black);
+    margin: 5px auto;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+
+  .burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.active span:nth-child(2) { opacity: 0; }
+  .burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 800px) {
+    .burger { display: block; }
+
+    nav {
+      display: flex !important;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--white);
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 32px;
+      gap: 8px;
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      z-index: 105;
+    }
+
+    nav.open { right: 0; }
+
+    nav a {
+      font-size: 20px;
+      margin: 0;
+      padding: 14px 0;
+      width: 100%;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      font-family: 'Playfair Display', serif;
+    }
+
+    nav a:last-child { border-bottom: none; }
+
+    body.menu-open::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 104;
+      backdrop-filter: blur(2px);
+    }
+
+    body.menu-open { overflow: hidden; }
+  }
 
   .hero {
     position: relative;
@@ -329,10 +400,6 @@
 
   .gallery-item:hover img { transform: scale(1.05); }
 
-  @media (max-width: 600px) {
-    .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  }
-
   .services { background: #0d0d0d; color: white; position: relative; }
   .services .section-title { color: white; }
   .services .section-sub { color: rgba(255,255,255,0.6); }
@@ -566,10 +633,6 @@
     margin-top: 16px;
   }
 
-  @media (max-width: 600px) {
-    .booking-form { padding: 28px 22px; }
-  }
-
   /* ===== КОНТАКТЫ ===== */
   .contacts {
     background: #0d0d0d;
@@ -670,6 +733,43 @@
   }
 
   footer .heart { color: var(--pink); }
+
+  /* ===== МОБИЛЬНЫЕ УЛУЧШЕНИЯ ===== */
+  @media (max-width: 600px) {
+    section { padding: 50px 0; }
+
+    .hero { padding: 50px 0 60px; }
+
+    .hero-buttons { flex-direction: column; }
+    .hero-buttons .btn { width: 100%; justify-content: center; }
+
+    .contact-buttons { flex-direction: column; align-items: stretch; }
+    .btn-tg, .btn-channel {
+      width: 100%;
+      justify-content: center;
+      padding: 16px 24px;
+    }
+
+    .section-title { font-size: 26px; }
+    .section-sub { font-size: 14px; margin-bottom: 32px; }
+
+    .price-card { padding: 24px 20px; }
+
+    .gallery { gap: 8px; }
+    .gallery-item { border-radius: 12px; }
+
+    .booking-form {
+      padding: 24px 20px;
+      border-radius: 18px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 14px;
+      font-size: 16px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -677,7 +777,14 @@
 <header>
   <div class="header-inner">
     <div class="logo">Алиса<span>.</span></div>
-    <nav>
+
+    <button class="burger" id="burger" aria-label="Открыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="nav">
       <a href="#about">Обо мне</a>
       <a href="#gallery">Работы</a>
       <a href="#services">Услуги</a>
@@ -703,7 +810,7 @@
         </div>
       </div>
       <div class="hero-photo">
-        <img src="img/work1.jpg" alt="Работа мастера — наращивание ногтей" />
+        <img src="img/work2.jpg" alt="Работа мастера — наращивание ногтей" />
       </div>
     </div>
   </div>
@@ -870,8 +977,8 @@
       <input type="checkbox" name="botcheck" style="display:none">
 
       <div class="form-group">
-        <label for="name">Как тебя зовут? <span class="req">*</span></label>
-        <input type="text" id="name" name="Имя" required placeholder="Например, Маша">
+        <label for="name">Как вас зовут? <span class="req">*</span></label>
+        <input type="text" id="name" name="Имя" required placeholder="ФИО">
       </div>
 
       <div class="form-group">
@@ -882,7 +989,7 @@
       <div class="form-group">
         <label for="service">Что хочешь? <span class="req">*</span></label>
         <select id="service" name="Услуга" required>
-          <option value="">— выбери услугу —</option>
+          <option value="">выбери услугу</option>
           <option>Наращивание 1–2</option>
           <option>Наращивание 3–4</option>
           <option>Наращивание 5–6</option>
@@ -900,12 +1007,12 @@
 
       <div class="form-group">
         <label for="when">Когда удобно?</label>
-        <input type="text" id="when" name="Когда удобно" placeholder="Например: суббота днём">
+        <input type="text" id="when" name="Когда удобно" placeholder="Дата, время">
       </div>
 
       <button type="submit" class="btn-submit">🐾 Отправить заявку</button>
 
-      <p class="form-note">Отправляя форму, ты согласна на обработку данных для записи на маникюр</p>
+      <p class="form-note">Отправляя форму, вы соглашаетесь на обработку данных для записи на маникюр</p>
     </form>
   </div>
 </section>
@@ -934,6 +1041,25 @@
 <footer>
   <p>© 2026 Алиса — мастер маникюра · Сделано с <span class="heart">♥</span> и 🐾</p>
 </footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    nav.classList.toggle('open');
+    document.body.classList.toggle('menu-open');
+  });
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('active');
+      nav.classList.remove('open');
+      document.body.classList.remove('menu-open');
+    });
+  });
+</script>
 
 </body>
 </html>
